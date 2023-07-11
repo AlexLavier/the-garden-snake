@@ -14,10 +14,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile6`, function (sprite, l
     game.showLongText("YOU GOT CAUGHT IN A TRAP", DialogLayout.Bottom)
     info.changeLifeBy(-1)
 })
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    game.setGameOverMessage(true, "" + Math.idiv(game.runtime(), 60000) + "." + Math.idiv(game.runtime(), 1000) % 60 + "." + game.runtime() % 1000)
-    game.gameOver(true)
-})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     Snake.vy = -100
 })
@@ -39,6 +35,7 @@ info.onCountdownEnd(function () {
     tiles.placeOnRandomTile(Snake, assets.tile`myTile7`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile29`, function (sprite, location) {
+    music.stopAllSounds()
     game.splash("YOU EXCAPED THE GARDEN")
     game.setGameOverMessage(true, "" + Math.idiv(game.runtime(), 60000) + "." + Math.idiv(game.runtime(), 1000) % 60 + "." + game.runtime() % 1000)
     game.gameOver(true)
@@ -52,9 +49,6 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
     controller.moveSprite(Snake, 100, 0)
-})
-controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-    next_level += 1
 })
 info.onLifeZero(function () {
     game.gameOver(false)
